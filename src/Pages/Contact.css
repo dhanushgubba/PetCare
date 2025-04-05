@@ -1,0 +1,117 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 50px auto;
+  min-height: 100vh;
+}
+
+.contact-form {
+  font-size: 16px;
+  width: 450px;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #e2e8f0;
+}
+
+.contact-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.contact-form h1 {
+  text-align: center;
+  color: #2d3748;
+  font-size: 2.5em;
+  margin-bottom: 1.5em;
+  font-weight: 700;
+}
+
+.input-groups {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.input-groups label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.95em;
+  transition: color 0.3s ease;
+}
+
+.input-groups input,
+.input-groups textarea {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+  color: #2d3748;
+  box-sizing: border-box;
+}
+
+.input-groups input:focus,
+.input-groups textarea:focus {
+  outline: none;
+  border-color: #4299e1;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.input-groups textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.input-groups input::placeholder,
+.input-groups textarea::placeholder {
+  color: #a0aec0;
+}
+
+.contact-btn {
+  width: 100%;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-btn:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4);
+}
+
+.contact-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+  .contact-form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .contact-form h1 {
+    font-size: 2em;
+  }
+}

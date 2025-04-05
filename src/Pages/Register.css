@@ -1,0 +1,150 @@
+.register-container {
+  width: 90%;
+  max-width: 450px;
+  min-height: 500px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  background-color: whitesmoke;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.register-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 90%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #ff6b6b;
+  outline: none;
+}
+
+.register-form button {
+  padding: 12px;
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+  background-color: #ff4c4c;
+}
+
+.register-form p {
+  font-size: 14px;
+}
+
+.register-form a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-form a:hover {
+  text-decoration: underline;
+}
+
+.terms-conditions {
+  display: flex;
+  text-align: left;
+  font-size: 14px;
+  gap: 8px; /* Adds space between flex children */
+}
+.terms-conditions a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer; /* Shows a pointer on hover */
+}
+@media (max-width: 768px) {
+  .terms-conditions {
+    flex-direction: column;
+    font-size: 13px;
+  }
+}
+
+.social-login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.social-login p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-google {
+  background-color: #db4437;
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+}
+
+.btn-twitter {
+  background-color: #1da1f2;
+}
+
+.btn-social:hover {
+  opacity: 0.9;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+.login-link p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.login-link a {
+  color: #007bff;
+  font-size: 16px;
+}

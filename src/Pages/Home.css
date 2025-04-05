@@ -1,0 +1,43 @@
+.home-container {
+  height: 100vh;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('../images/pets.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.home-content h1 {
+  font-size: 48px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.home-btn {
+  font-size: 18px;
+  padding: 12px 28px;
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #ff4c4c;
+}
+.home-btn a {
+  text-decoration: none;
+  color: #fff;
+}
