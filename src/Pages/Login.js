@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -7,6 +8,7 @@ const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'username') {
@@ -21,7 +23,7 @@ const Login = () => {
     setIsSubmitting(true);
     setError(null);
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://localhost:5000/login/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,8 +36,8 @@ const Login = () => {
       }
 
       const data = await response.json();
-      console.log('Login successful:', data);
-      // Navigate to dashboard or home
+      alert('Login successful:', data);
+      navigate('/home'); // Redirect to home page on successful login
     } catch (error) {
       setError(error.message || 'Login failed. Please try again.');
     }
