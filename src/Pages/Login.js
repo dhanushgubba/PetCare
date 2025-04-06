@@ -31,9 +31,10 @@ const Login = () => {
       if (!response.ok) throw new Error('Invalid credentials');
 
       const data = await response.json();
-      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('userEmail', data.email);
+
       alert('Login successful');
-      navigate('/profile'); // change route if needed
+      navigate('/home');
     } catch (error) {
       setError(error.message || 'Login failed. Please try again.');
     }

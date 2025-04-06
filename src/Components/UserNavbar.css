@@ -2,31 +2,110 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 1rem 2rem;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
 .user-logo {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
   color: #333;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .user-links {
   display: flex;
-  gap: 50px;
-  font-size: 18px;
+  gap: 2rem;
   align-items: center;
 }
 
-.user-links a {
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  transition: color 0.3s ease;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
 }
 
-.user-links a:hover {
-  color: #ff6b6b;
+.nav-link:hover {
+  color: #667eea;
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+}
+
+.user-welcome {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.user-profile-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.user-profile-link .nav-icon {
+  font-size: 1rem;
+}
+
+.user-profile-link span {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .user-links {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .user-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  .user-welcome {
+    margin-top: 1rem;
+  }
 }

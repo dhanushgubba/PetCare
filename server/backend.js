@@ -71,16 +71,22 @@ app.post('/register/signup', async function (req, res) {
     await client.close();
   }
 });
-app.post('/login/signin', async function (req, res) {
+app.post('/login/signin', async (req, res) => {
   const { username, password } = req.body;
-  const db = client.db('petspot');
-  const collection = db.collection('users');
 
-  const user = await collection.findOne({ username, password });
-  if (!user) {
-    return res.status(401).json({ error: 'Invalid email or password' });
+  try {
+    const conn = await client.connect();
+    const db = conn.db('petspot');
+    const user = await db.collection('users').findOne({ username, password });
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    res.json({ email: user.email });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Login failed', details: err.message });
   }
-  res.json({ message: 'Login successful', user });
 });
 
 app.post('/find/pets', upload.single('image'), async (req, res) => {
@@ -140,5 +146,28 @@ app.post('/find/pets', upload.single('image'), async (req, res) => {
     });
   } finally {
     await client.close();
+  }
+});
+app.get('/api/profile', async (req, res) => {
+  const userEmail = req.query.email;
+  let conn;
+
+  try {
+    conn = await client.connect();
+    const db = conn.db('petspot');
+    const user = await db.collection('users').findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: 'Failed to fetch profile', details: err.message });
+  } finally {
+    if (conn) await conn.close();
   }
 });
