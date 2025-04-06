@@ -9,40 +9,38 @@ const Login = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'username') {
-      setUsername(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
+    if (name === 'username') setUsername(value);
+    else if (name === 'password') setPassword(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+
     try {
       const response = await fetch('http://localhost:5000/login/signin', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
-      if (!response.ok) {
-        throw new Error('Invalid credentials');
-      }
+      if (!response.ok) throw new Error('Invalid credentials');
 
       const data = await response.json();
-      alert('Login successful:', data);
-      navigate('/home'); // Redirect to home page on successful login
+      localStorage.setItem('user', JSON.stringify(data.user));
+      alert('Login successful');
+      navigate('/profile'); // change route if needed
     } catch (error) {
       setError(error.message || 'Login failed. Please try again.');
     }
+
     setIsSubmitting(false);
   };
+
   useEffect(() => {
     document.title = 'Login | Pet Care';
   }, []);
@@ -57,7 +55,6 @@ const Login = () => {
           <input
             type="text"
             name="username"
-            placeholder="Username"
             value={username}
             onChange={handleChange}
             required
@@ -68,7 +65,6 @@ const Login = () => {
           <input
             type="password"
             name="password"
-            placeholder="Password"
             value={password}
             onChange={handleChange}
             required
@@ -81,7 +77,7 @@ const Login = () => {
           {isSubmitting ? 'Logging in...' : 'Login'}
         </button>
         <p>
-          Don't have an account <a href="/register">Register Here</a>
+          Don't have an account? <a href="/register">Register Here</a>
         </p>
       </form>
     </div>

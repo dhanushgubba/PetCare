@@ -31,7 +31,6 @@ const Register = () => {
       const data = await response.json();
       if (response.ok) {
         alert('Registration successful!');
-        // Optional: reset form
         e.target.reset();
       } else {
         alert('Registration failed: ' + (data.error || 'Unknown error'));

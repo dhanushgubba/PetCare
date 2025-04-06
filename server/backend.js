@@ -1,10 +1,33 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 
+const { MongoClient } = require('mongodb');
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const uploadPath = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath);
+}
+
+// Set up Multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadPath);
+  },
+  filename: (req, file, cb) => {
+    const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}-${
+      file.originalname
+    }`;
+    cb(null, uniqueName);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port number ${PORT}`));
@@ -58,4 +81,64 @@ app.post('/login/signin', async function (req, res) {
     return res.status(401).json({ error: 'Invalid email or password' });
   }
   res.json({ message: 'Login successful', user });
+});
+
+app.post('/find/pets', upload.single('image'), async (req, res) => {
+  try {
+    const {
+      username,
+      petName,
+      location,
+      description,
+      date,
+      time,
+      contactInfo,
+    } = req.body;
+    const image = req.file;
+
+    if (!image) {
+      return res
+        .status(400)
+        .json({ success: false, message: 'Image is required.' });
+    }
+
+    // 🔌 Connect to MongoDB
+    await client.connect();
+    const db = client.db('petspot');
+    const collection = db.collection('pets');
+
+    const result = await collection.insertOne({
+      username,
+      petName,
+      location,
+      description,
+      date,
+      time,
+      contactInfo,
+      imageUrl: `/uploads/${image.filename}`,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Pet sighting submitted successfully!',
+      data: {
+        petName,
+        description,
+        location,
+        date,
+        time,
+        contactInfo,
+        imageUrl: `/uploads/${image.filename}`,
+        _id: result.insertedId,
+      },
+    });
+  } catch (error) {
+    console.error('Server Error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to submit pet sighting. Please try again.',
+    });
+  } finally {
+    await client.close();
+  }
 });
