@@ -83,12 +83,6 @@ const UserHome = () => {
               <span className="activity-icon">{activity.icon}</span>
               <h3>{activity.title}</h3>
               <p>{activity.description}</p>
-              <button
-                onClick={() => handleExplore(activity.title)}
-                className="explore-button"
-              >
-                Explore
-              </button>
             </div>
           ))}
         </div>

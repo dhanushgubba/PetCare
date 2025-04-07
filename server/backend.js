@@ -171,3 +171,30 @@ app.get('/api/profile', async (req, res) => {
     if (conn) await conn.close();
   }
 });
+
+app.post('/login/adminlogin', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const conn = await client.connect();
+    const db = conn.db('petspot');
+    const admin = await db
+      .collection('adminlogin')
+      .findOne({ username, password });
+
+    if (!admin) {
+      return res
+        .status(401)
+        .json({ success: false, error: 'Invalid credentials' });
+    }
+
+    res.json({ success: true, message: 'Login successful' });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ success: false, error: 'Login failed', details: err.message });
+  } finally {
+    await client.close();
+  }
+});

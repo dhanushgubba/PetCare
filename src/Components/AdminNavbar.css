@@ -1,0 +1,43 @@
+.adminnavbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.admin-logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.adminnav-links {
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+  align-items: center;
+}
+
+.adminnav-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.adminnav-links a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.adminnav-icon {
+  font-size: 18px;
+  text-align: center;
+}
