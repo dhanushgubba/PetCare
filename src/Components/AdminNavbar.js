@@ -43,7 +43,7 @@ const AdminNavbar = () => {
         <Link to="/adoption-pets" onClick={toggleMenu}>
           <FaSignature className="adminnav-icon" /> Adoption Pets
         </Link>
-        <Link to="/profile" onClick={toggleMenu}>
+        <Link to="admin-profile" onClick={toggleMenu}>
           <FaUser className="adminnav-icon" /> Admin Profile
         </Link>
         <Link to="/login" onClick={toggleMenu}>

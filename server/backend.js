@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const { MongoClient } = require('mongodb');
+const { error } = require('console');
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -194,6 +195,22 @@ app.post('/login/adminlogin', async (req, res) => {
     res
       .status(500)
       .json({ success: false, error: 'Login failed', details: err.message });
+  } finally {
+    await client.close();
+  }
+});
+app.get('/get/persons', async (req, res) => {
+  let conn;
+  try {
+    conn = await client.connect();
+    const db = conn.db('petspot');
+    const persons = await db.collection('users').find().toArray();
+    res.json(persons);
+  } catch (err) {
+    console.error(err);
+    res
+      .json(500)
+      .json({ success: false, error: 'Failed to fetch', details: err.message });
   } finally {
     await client.close();
   }
