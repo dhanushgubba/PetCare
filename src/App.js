@@ -21,8 +21,7 @@ import Adopt from './Pages/Adopt';
 import AdminLogin from './Pages/AdminLogin';
 import AdminNavbar from './Components/AdminNavbar';
 import AdminHome from './Pages/AdminHome';
-import AdminUsers from './Pages/AdminUsers';
-import AdminProfile from './Pages/AdminProfile';
+import Blog from './Pages/Blog';
 
 const App = () => {
   const location = useLocation();
@@ -36,9 +35,13 @@ const App = () => {
     '/forgot-password',
     '/adminlogin',
   ].includes(location.pathname);
-  const showUserNavbar = ['/home', '/pets', '/profile', '/adopt'].includes(
-    location.pathname
-  );
+  const showUserNavbar = [
+    '/home',
+    '/pets',
+    '/profile',
+    '/adopt',
+    '/blog',
+  ].includes(location.pathname);
 
   const showAdminNavbar = [
     '/admin-dashboard',
@@ -64,8 +67,7 @@ const App = () => {
         <Route path="/adopt" element={<Adopt />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminHome />} />
-        <Route path="/manage-users" element={<AdminUsers />} />
-        <Route path="/admin-profile" element={<AdminProfile />} />
+        <Route path="/blogs" element={<Blog />} />
       </Routes>
     </>
   );
