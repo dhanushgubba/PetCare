@@ -215,3 +215,35 @@ app.get('/get/persons', async (req, res) => {
     await client.close();
   }
 });
+
+app.get('/get/adminprofile', async (req, res) => {
+  const username = req.query.username;
+  let conn;
+
+  try {
+    conn = await client.connect();
+    const db = conn.db('petspot');
+    const user = await db
+      .collection('adminlogin')
+      .findOne({ username: username });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Admin not found' });
+    }
+
+    // Only send necessary fields
+    res.json({
+      username: user.username,
+      // Don't send the password back for security!
+    });
+  } catch (err) {
+    console.error('Error fetching admin profile:', err);
+    res
+      .status(500)
+      .json({ error: 'Failed to fetch profile', details: err.message });
+  } finally {
+    if (conn) {
+      await conn.close();
+    }
+  }
+});

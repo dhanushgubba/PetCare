@@ -32,7 +32,7 @@ const AdminLogin = () => {
       });
 
       const data = await response.json();
-      localStorage.getItem('adminUsername', username);
+      localStorage.setItem('adminUsername', username);
 
       if (data.success) {
         navigate('/admin-dashboard');

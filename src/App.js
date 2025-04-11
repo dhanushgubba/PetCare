@@ -23,6 +23,7 @@ import AdminNavbar from './Components/AdminNavbar';
 import AdminHome from './Pages/AdminHome';
 import Blog from './Pages/Blog';
 import AdminUsers from './Pages/AdminUsers';
+import AdminProfile from './Pages/AdminProfile';
 
 const App = () => {
   const location = useLocation();
@@ -70,6 +71,7 @@ const App = () => {
         <Route path="/admin-dashboard" element={<AdminHome />} />
         <Route path="/manage-users" element={<AdminUsers />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/admin-profile" element={<AdminProfile />} />
       </Routes>
     </>
   );
